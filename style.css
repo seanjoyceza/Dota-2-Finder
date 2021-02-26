@@ -1,0 +1,35 @@
+* {
+    font-family: sans-serif;
+}
+
+.make_block {
+    display: inline-block;
+}
+
+body {
+    padding-bottom: 300px;
+    background-image: url("https://7wallpapers.net/wp-content/uploads/15_Dota2-Bloodseeker.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.navbar-one {
+    background-color: #03071e !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+
+}
+
+.search {
+    background-color: #03071e;
+    color: white;
+}
+
+.second_container_color, .last_match, .secondlast_match, .thirdlast_match, .player {
+    background-color: #03071e;
+    color: white;
+}
+
+.stats_one, .stats_two, .stats_three, .stats_four, .recents_heading {
+    color: white;
+}

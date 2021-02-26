@@ -4,4 +4,4 @@
  
  Click the link below to navigate to the website and search for your Dota 2 profile!  
  
- http://127.0.0.1:5500/index.html
+ https://seanjoyceza.github.io/Dota-2-Finder/

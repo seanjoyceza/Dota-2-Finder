@@ -8,9 +8,9 @@ input.addEventListener("keyup", (event) => {
 })
 
 async function getPlayerInfo(searchQuery) {
-    let res = await fetch(`https://api.opendota.com/api/search?${searchQuery}`)
-    let data = await res.json()
-    if (data[0]) {
+    try {
+        let res = await fetch(`https://api.opendota.com/api/search?${searchQuery}`)
+        let data = await res.json()
 
         let account_id = data[0].account_id;
         player.innerText = data[0].personaname
@@ -19,14 +19,16 @@ async function getPlayerInfo(searchQuery) {
         getPlayerStats(account_id)
         getPlayerStatistics(account_id)
         second_container.classList.add("border", "second_container_color")
+
+    } catch {
+        // console.log("getPlayerInfo function error")
     }
 }
 
 async function getPlayerStatistics(accountID) {
-    let res = await fetch(`https://api.opendota.com/api/players/${accountID}`)
-    let data = await res.json()
-    console.log(data)
     try {
+        let res = await fetch(`https://api.opendota.com/api/players/${accountID}`)
+        let data = await res.json()
         let country = data.profile.loccountrycode
         stats_one.innerHTML = `<b>Country:</b> ${countryListAlpha2[country]}`
         const flag = new CountryFlag(stats_one);
@@ -39,15 +41,16 @@ async function getPlayerStatistics(accountID) {
         stats_three.classList.add("border", "rounded", "p-3")
         stats_four.classList.add("border", "rounded", "p-3")
     } catch (e) {
+        // console.log("getPlayerStatistics function error")
     }
 }
 
 async function getPlayerStats(accountID) {
     recents_heading.innerText = "Recent Matches"
-    let res = await fetch(`https://api.opendota.com/api/players/${accountID}/recentMatches`)
-    let data = await res.json()
-
     try {
+        let res = await fetch(`https://api.opendota.com/api/players/${accountID}/recentMatches`)
+        let data = await res.json()
+
         last_match_one.innerHTML = `<b>Gamemode:</b> ${gameMode[data[0].game_mode]}`
         last_match_two.innerHTML = `<b>K/D/A:</b> ${data[0].kills}/${data[0].deaths}/${data[0].assists}`
         last_match_three.innerHTML = `<b>MatchID:</b> <a href="https://www.dotabuff.com/matches/${data[0].match_id}" class="btn-sm btn btn-outline-primary" target="_blank">${data[0].match_id}</a>`
@@ -62,8 +65,8 @@ async function getPlayerStats(accountID) {
         thirdlast_match_two.innerHTML = `<b>K/D/A:</b> ${data[2].kills}/${data[2].deaths}/${data[2].assists}`
         thirdlast_match_three.innerHTML = `<b>MatchID:</b> <a href="https://www.dotabuff.com/matches/${data[2].match_id}" class="btn-sm btn btn-outline-primary" target="_blank">${data[2].match_id}</a>`
         thirdlast_match.classList.add("border", "rounded", "p-3")
-
-    } catch (e) {
+    } catch {
+        // console.log("getPlayerStats function error")
     }
 }
 
